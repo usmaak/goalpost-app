@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5424C9701FC74BCE0002ED98 /* FinishGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5424C96F1FC74BCE0002ED98 /* FinishGoalVC.swift */; };
 		54DA250A1FC546B60085554D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA25091FC546B60085554D /* AppDelegate.swift */; };
 		54DA250C1FC546B60085554D /* GoalsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA250B1FC546B60085554D /* GoalsVC.swift */; };
 		54DA250F1FC546B60085554D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54DA250D1FC546B60085554D /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5424C96F1FC74BCE0002ED98 /* FinishGoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishGoalVC.swift; sourceTree = "<group>"; };
 		54DA25061FC546B60085554D /* goalpost-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "goalpost-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54DA25091FC546B60085554D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54DA250B1FC546B60085554D /* GoalsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsVC.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				54DA250B1FC546B60085554D /* GoalsVC.swift */,
 				54DA25261FC694F00085554D /* CreateGoalVC.swift */,
+				5424C96F1FC74BCE0002ED98 /* FinishGoalVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				54DA250A1FC546B60085554D /* AppDelegate.swift in Sources */,
 				54DA25291FC696990085554D /* UIViewControllerExt.swift in Sources */,
 				54DA252D1FC742820085554D /* UIButtonExt.swift in Sources */,
+				5424C9701FC74BCE0002ED98 /* FinishGoalVC.swift in Sources */,
 				54DA25121FC546B60085554D /* goalpost_app.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
