@@ -53,8 +53,4 @@ class CreateGoalVC: UIViewController, UITextViewDelegate {
     @IBAction func backButtonWasPressed(_ sender: UIButton) {
         dismissDetail()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
 }
