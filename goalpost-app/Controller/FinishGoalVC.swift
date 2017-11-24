@@ -32,7 +32,7 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
         if pointsTextField.text != nil {
             self.save { (complete) in
                 if complete {
-                    
+                    self.dismissDetail()
                 }
             }
         }
