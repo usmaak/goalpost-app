@@ -191,23 +191,57 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUB-d3-a12" userLabel="UndoView">
+                                <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Removed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rh4-nv-dJA">
+                                        <rect key="frame" x="18" y="12" width="109.5" height="22"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNx-lV-fBu">
+                                        <rect key="frame" x="298" y="4" width="59" height="38"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="19"/>
+                                        <state key="normal" title="UNDO">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="undoButtonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VBj-ML-ir1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="kNx-lV-fBu" firstAttribute="centerY" secondItem="rh4-nv-dJA" secondAttribute="centerY" id="LvF-tC-PCj"/>
+                                    <constraint firstItem="rh4-nv-dJA" firstAttribute="top" secondItem="KUB-d3-a12" secondAttribute="top" constant="12" id="TU5-2H-UD2"/>
+                                    <constraint firstItem="rh4-nv-dJA" firstAttribute="leading" secondItem="KUB-d3-a12" secondAttribute="leading" constant="18" id="WJA-FO-LXd"/>
+                                    <constraint firstAttribute="trailing" secondItem="kNx-lV-fBu" secondAttribute="trailing" constant="18" id="WaG-dw-TYe"/>
+                                    <constraint firstAttribute="height" id="vRG-GA-aT8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wYp-Sm-bYy" firstAttribute="bottom" secondItem="4H9-35-nR6" secondAttribute="bottom" id="6oP-de-066"/>
+                            <constraint firstItem="wYp-Sm-bYy" firstAttribute="bottom" secondItem="KUB-d3-a12" secondAttribute="bottom" id="6oP-de-066"/>
                             <constraint firstItem="4H9-35-nR6" firstAttribute="top" secondItem="0v3-tZ-FsQ" secondAttribute="bottom" id="8eB-wV-NNv"/>
                             <constraint firstItem="0v3-tZ-FsQ" firstAttribute="trailing" secondItem="wYp-Sm-bYy" secondAttribute="trailing" id="RS9-JZ-Uq8"/>
                             <constraint firstItem="2Li-Ea-XJy" firstAttribute="centerX" secondItem="wYp-Sm-bYy" secondAttribute="centerX" id="Wuw-L1-Dfp"/>
+                            <constraint firstItem="KUB-d3-a12" firstAttribute="bottom" secondItem="wYp-Sm-bYy" secondAttribute="bottom" id="Xqz-m8-N1z"/>
                             <constraint firstItem="0v3-tZ-FsQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="YgT-o2-5J9"/>
+                            <constraint firstItem="KUB-d3-a12" firstAttribute="leading" secondItem="wYp-Sm-bYy" secondAttribute="leading" id="a1t-qn-3UI"/>
                             <constraint firstItem="4H9-35-nR6" firstAttribute="leading" secondItem="wYp-Sm-bYy" secondAttribute="leading" id="baw-so-gL0"/>
                             <constraint firstItem="wYp-Sm-bYy" firstAttribute="trailing" secondItem="4H9-35-nR6" secondAttribute="trailing" id="cEV-kk-X0j"/>
                             <constraint firstItem="2Li-Ea-XJy" firstAttribute="top" secondItem="0v3-tZ-FsQ" secondAttribute="bottom" constant="75" id="nul-hq-p51"/>
+                            <constraint firstItem="KUB-d3-a12" firstAttribute="trailing" secondItem="wYp-Sm-bYy" secondAttribute="trailing" id="rsu-JT-tIo"/>
+                            <constraint firstItem="KUB-d3-a12" firstAttribute="top" secondItem="4H9-35-nR6" secondAttribute="bottom" id="saX-Nt-FUV"/>
                             <constraint firstItem="0v3-tZ-FsQ" firstAttribute="leading" secondItem="wYp-Sm-bYy" secondAttribute="leading" id="vLm-ng-i2g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wYp-Sm-bYy"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="4H9-35-nR6" id="Cnk-wW-sJ0"/>
+                        <outlet property="undoViewHeightConstraint" destination="vRG-GA-aT8" id="qZc-Ki-78l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -40,6 +40,15 @@ extension GoalsVC: UITableViewDelegate, UITableViewDataSource {
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
             self.removeGoal(atIndexPath: indexPath)
+            self.deletedGoal = self.goals[indexPath.row]
+            self.showHideUndoView(viewIsVisible: true)
+            
+            let when = DispatchTime.now() + 5
+            DispatchQueue.main.asyncAfter(deadline: when){
+                // your code with delay
+                self.showHideUndoView(viewIsVisible: false)
+            }
+            
             self.fetchCoreDataObjects()
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -78,6 +87,7 @@ extension GoalsVC {
     func removeGoal(atIndexPath indexPath: IndexPath) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
 
+        managedContext.undoManager = UndoManager()
         managedContext.delete(goals[indexPath.row])
         
         do {
@@ -109,14 +119,35 @@ extension GoalsVC {
             debugPrint("Could not set progress: \(error.localizedDescription)")
         }
     }
+    
+    func undoDeletion() {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+        
+        managedContext.undoManager?.undo()
+        
+        showHideUndoView(viewIsVisible: false)
+        fetchCoreDataObjects()
+        tableView.reloadData()
+    }
+    
+    func showHideUndoView(viewIsVisible visible: Bool) {
+        if visible {
+            self.undoViewHeightConstraint.constant = 50
+        }
+        else {
+            undoViewHeightConstraint.constant = 0
+        }
+    }
 }
 
 let appDelegate = UIApplication.shared.delegate as? AppDelegate
 
 class GoalsVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var undoViewHeightConstraint: NSLayoutConstraint!
     
     var goals: [Goal] = []
+    var deletedGoal: Goal!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +155,8 @@ class GoalsVC: UIViewController {
         tableView.isHidden = false
         tableView.delegate = self
         tableView.dataSource = self
+        
+        showHideUndoView(viewIsVisible: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -150,5 +183,8 @@ class GoalsVC: UIViewController {
         presentDetail(createGoalVC)
     }
     
+    @IBAction func undoButtonWasPressed(_ sender: UIButton) {
+        undoDeletion()
+    }
 }
 
