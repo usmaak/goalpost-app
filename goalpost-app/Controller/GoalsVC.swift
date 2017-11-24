@@ -36,14 +36,27 @@ extension GoalsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let cell = tableView.cellForRow(at: indexPath) as! GoalCell
+        
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
             self.removeGoal(atIndexPath: indexPath)
             self.fetchCoreDataObjects()
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        
         deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        return [deleteAction]
+
+        if cell.completionView.isHidden {
+            let addAction = UITableViewRowAction(style: .normal, title: "ADD 1") { (rowAction, indexPath) in
+                self.setProgress(atIndexPath: indexPath)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            addAction.backgroundColor = #colorLiteral(red: 0.9385011792, green: 0.7164435983, blue: 0.3331357837, alpha: 1)
+            
+            return [deleteAction, addAction]
+        }
+        else {
+            return [deleteAction]
+        }
     }
 }
 
@@ -73,6 +86,27 @@ extension GoalsVC {
         }
         catch {
             debugPrint("Could not delete: \(error.localizedDescription)")
+        }
+    }
+    
+    func setProgress(atIndexPath indexPath: IndexPath) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+
+        let chosenGoal = goals[indexPath.row]
+
+        if chosenGoal.goalProgress < chosenGoal.goalCompletionValue {
+            chosenGoal.goalProgress += 1
+            print("Successfully set progress.")
+        }
+        else {
+            return
+        }
+        
+        do {
+            try managedContext.save()
+        }
+        catch {
+            debugPrint("Could not set progress: \(error.localizedDescription)")
         }
     }
 }
